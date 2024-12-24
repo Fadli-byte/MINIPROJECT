@@ -159,8 +159,21 @@ app.delete('/kapal/:id', authMiddleware(['admin']), (req, res) => {
   });
 });
 
+// Mengatur EJS sebagai view engine
+app.set('view engine', 'ejs');
+
+// Rute untuk halaman utama
+app.get('/', (req, res) => {
+  db.query('SELECT * FROM kapal', (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: 'Gagal mengambil data kapal' });
+    }
+    res.render('index', { kapal: results }); // Mengirimkan data kapal ke index.ejs
+  });
+});
+
 // Jalankan server
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server berjalan di port ${PORT}`);
+console.log(`Server berjalan di port ${PORT} - http://localhost:${PORT}`);
 });

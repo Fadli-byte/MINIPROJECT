@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kapal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            font-family: 'Arial', sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            animation: containerFadeIn 1s ease-out;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        @keyframes containerFadeIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #00596b;
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            animation: titleWave 3s ease-in-out infinite;
+            text-align: center;
+        }
+
+        @keyframes titleWave {
+            0%, 100% {
+                transform: translateY(0) rotate(0);
+            }
+            25% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+            75% {
+                transform: translateY(10px) rotate(-1deg);
+            }
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #004d40, #00897b, #004d40);
+            animation: underlineExpand 2s ease-in-out infinite;
+        }
+
+        @keyframes underlineExpand {
+            0%, 100% {
+                width: 0;
+            }
+            50% {
+                width: 80%;
+            }
+        }
+
+        .table-responsive {
+            margin: 0 auto;
+            width: 100%;
+            animation: tableAppear 1.5s ease-out;
+        }
+
+        .table {
+            margin: 0 auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        @keyframes tableAppear {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .table thead th {
+            background-color: #004d40;
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px;
+            border: none;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #b2dfdb;
+            transform: scale(1.01);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table td {
+            padding: 15px;
+            vertical-align: middle;
+            border: none;
+            border-bottom: 1px solid #dee2e6;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin-top: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .table {
+                font-size: 0.9rem;
+            }
+
+            .table thead th {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            .table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Kapal</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID Kapal</th>
+                        <th>Nama Kapal</th>
+                        <th>Jenis Kapal</th>
+                        <th>Kapasitas Muatan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% kapal.forEach(function(item) { %>
+                        <tr>
+                            <td><%= item.id_kapal %></td>
+                            <td><%= item.nama_kapal %></td>
+                            <td><%= item.jenis_kapal %></td>
+                            <td><%= item.kapasitas_muatan %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
